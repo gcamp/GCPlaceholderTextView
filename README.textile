@@ -2,6 +2,6 @@ h1. GCPlaceholderTextView
 
 @GCPlaceholderTextView@ is a subclass of @UITextView@ that add a placeholder property.
 
-You use it like a normal @UITextView@ and can set the placeholder at any moment. The placeholder property has the same effect as the @ UITextField@'s placeholder.
+You use it like a normal @UITextView@ and can set the placeholder at any moment. The placeholder property has the same effect as the @UITextField@'s placeholder.
 
 A demo project is included.
