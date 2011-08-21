@@ -60,6 +60,13 @@
     return text;
 }
 
+- (void) setText:(NSString *)text { 
+    super.text = text; 
+    
+    if ([text isEqualToString:self.placeholder]) self.textColor = [UIColor lightGrayColor];
+    else self.textColor = self.realTextColor;
+}
+
 - (NSString *) realText {
     return [super text];
 }

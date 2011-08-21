@@ -141,6 +141,7 @@
 		B0B559EC1361DFFA00A8E980 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = LittleKiwi;
 			};
 			buildConfigurationList = B0B559EF1361DFFA00A8E980 /* Build configuration list for PBXProject "GCPlaceholderTextViewDemo" */;
