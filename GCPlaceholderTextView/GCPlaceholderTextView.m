@@ -60,11 +60,20 @@
     return text;
 }
 
-- (void) setText:(NSString *)text { 
-    super.text = text; 
+- (void) setText:(NSString *)text {
+    if ([text isEqualToString:@""] || text == nil) {
+        super.text = self.placeholder;
+    }
+    else {
+        super.text = text;
+    }
     
-    if ([text isEqualToString:self.placeholder]) self.textColor = [UIColor lightGrayColor];
-    else self.textColor = self.realTextColor;
+    if ([text isEqualToString:self.placeholder]) {
+        self.textColor = [UIColor lightGrayColor];
+    }
+    else {
+        self.textColor = self.realTextColor;
+    }
 }
 
 - (NSString *) realText {
@@ -73,14 +82,14 @@
 
 - (void) beginEditing:(NSNotification*) notification {
     if ([self.realText isEqualToString:self.placeholder]) {
-        self.text = nil;
+        super.text = nil;
         self.textColor = self.realTextColor;
     }
 }
 
 - (void) endEditing:(NSNotification*) notification {
     if ([self.realText isEqualToString:@""] || self.realText == nil) {
-        self.text = self.placeholder;
+        super.text = self.placeholder;
         self.textColor = [UIColor lightGrayColor];
     }
 }
