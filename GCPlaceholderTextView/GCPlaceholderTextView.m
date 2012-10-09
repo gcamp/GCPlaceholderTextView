@@ -56,7 +56,7 @@
 
 - (NSString *) text {
     NSString* text = [super text];
-    if ([text isEqualToString:self.placeholder]) return nil;
+    if ([text isEqualToString:self.placeholder]) return @"";
     return text;
 }
 
