@@ -105,17 +105,6 @@
     }
 }
 
--(NSRange)selectedRange
-{
-    if([self text])
-        return [super selectedRange];
-    
-    NSRange range;
-    range.length = 0;
-    range.location = 0;
-    return range;
-}
-
 #pragma mark -
 #pragma mark Dealloc
 
