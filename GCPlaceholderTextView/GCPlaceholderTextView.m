@@ -56,7 +56,7 @@
 
 - (NSString *) text {
     NSString* text = [super text];
-    if ([text isEqualToString:self.placeholder]) return nil;
+    if ([text isEqualToString:self.placeholder]) return @"";
     return text;
 }
 
@@ -103,6 +103,17 @@
         self.realTextColor = textColor;
         [super setTextColor:textColor];
     }
+}
+
+-(NSRange)selectedRange
+{
+    if([self text])
+        return [super selectedRange];
+    
+    NSRange range;
+    range.length = 0;
+    range.location = 0;
+    return range;
 }
 
 #pragma mark -
