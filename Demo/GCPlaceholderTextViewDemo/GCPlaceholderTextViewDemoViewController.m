@@ -15,6 +15,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.textView.placeholderColor = [UIColor redColor];
     self.textView.placeholder = NSLocalizedString(@"This is a placeholder",);
 }
 
