@@ -22,6 +22,7 @@
 
 @synthesize realTextColor;
 @synthesize placeholder;
+@synthesize placeholderColor;
 
 #pragma mark -
 #pragma mark Initialisation
@@ -38,6 +39,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endEditing:) name:UITextViewTextDidEndEditingNotification object:self];
     
     self.realTextColor = [UIColor blackColor];
+    self.placeholderColor = [UIColor lightGrayColor];
 }
 
 #pragma mark -
@@ -69,7 +71,7 @@
     }
     
     if ([text isEqualToString:self.placeholder]) {
-        self.textColor = [UIColor lightGrayColor];
+        self.textColor = self.placeholderColor;
     }
     else {
         self.textColor = self.realTextColor;
@@ -90,14 +92,17 @@
 - (void) endEditing:(NSNotification*) notification {
     if ([self.realText isEqualToString:@""] || self.realText == nil) {
         super.text = self.placeholder;
-        self.textColor = [UIColor lightGrayColor];
+        self.textColor = self.placeholderColor;
     }
 }
 
 - (void) setTextColor:(UIColor *)textColor {
     if ([self.realText isEqualToString:self.placeholder]) {
-        if ([textColor isEqual:[UIColor lightGrayColor]]) [super setTextColor:textColor];
-        else self.realTextColor = textColor;
+        if ([textColor isEqual:self.placeholderColor]){
+             [super setTextColor:textColor];
+        } else {
+            self.realTextColor = textColor;
+        }
     }
     else {
         self.realTextColor = textColor;
