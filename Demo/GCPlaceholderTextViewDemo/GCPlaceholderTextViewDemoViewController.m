@@ -23,11 +23,6 @@
     [self.textView resignFirstResponder];
 }
 
-- (void)dealloc
-{
-    [textView release];
-    [super dealloc];
-}
 
 - (void)viewDidUnload
 {

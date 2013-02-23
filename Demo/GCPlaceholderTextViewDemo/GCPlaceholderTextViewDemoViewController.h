@@ -11,7 +11,7 @@
 
 @interface GCPlaceholderTextViewDemoViewController : UIViewController 
 
-@property (nonatomic, retain) IBOutlet GCPlaceholderTextView *textView;
+@property (nonatomic, strong) IBOutlet GCPlaceholderTextView *textView;
 
 - (IBAction)finish:(id)sender;
 
