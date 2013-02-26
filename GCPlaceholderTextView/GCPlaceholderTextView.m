@@ -46,7 +46,7 @@
 #pragma mark Setter/Getters
 
 - (void) setPlaceholder:(NSString *)aPlaceholder {
-    if ([self.realText isEqualToString:placeholder]) {
+    if ([self.realText isEqualToString:placeholder] && ![self isFirstResponder]) {
         self.text = aPlaceholder;
     }
     
