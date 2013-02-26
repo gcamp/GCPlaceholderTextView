@@ -11,7 +11,7 @@
 
 @interface GCPlaceholderTextView : UITextView 
 
-@property(nonatomic, retain) NSString *placeholder;
-@property (nonatomic, retain) UIColor *placeholderColor;
+@property(nonatomic, strong) NSString *placeholder;
+@property (nonatomic, strong) UIColor *placeholderColor;
 
 @end
