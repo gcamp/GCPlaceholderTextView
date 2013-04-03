@@ -14,5 +14,6 @@
 @property (nonatomic, retain) IBOutlet GCPlaceholderTextView *textView;
 
 - (IBAction)finish:(id)sender;
+- (IBAction)refreshText:(id)sender;
 
 @end
