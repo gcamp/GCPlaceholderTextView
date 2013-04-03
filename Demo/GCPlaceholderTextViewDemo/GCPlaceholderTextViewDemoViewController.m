@@ -23,6 +23,10 @@
     [self.textView resignFirstResponder];
 }
 
+- (IBAction)refreshText:(id)sender {
+    [self.textView setText:@""];
+}
+
 - (void)dealloc
 {
     [textView release];

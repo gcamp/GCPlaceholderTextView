@@ -63,7 +63,7 @@
 }
 
 - (void) setText:(NSString *)text {
-    if ([text isEqualToString:@""] || text == nil) {
+    if (([text isEqualToString:@""] || text == nil) && ![self isFirstResponder]) {
         super.text = self.placeholder;
     }
     else {
