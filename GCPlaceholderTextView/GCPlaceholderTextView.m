@@ -49,9 +49,11 @@
     if ([self.realText isEqualToString:placeholder] && ![self isFirstResponder]) {
         self.text = aPlaceholder;
     }
+    if (aPlaceholder != placeholder) {
+        [placeholder autorelease];
+        placeholder = [aPlaceholder retain];
+    }
     
-    [placeholder release];
-    placeholder = [aPlaceholder retain];
     
     [self endEditing:nil];
 }
@@ -115,7 +117,9 @@
 
 - (void)dealloc {
     [realTextColor release];
+    realTextColor = nil;
     [placeholder release];
+    placeholder = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [super dealloc];
