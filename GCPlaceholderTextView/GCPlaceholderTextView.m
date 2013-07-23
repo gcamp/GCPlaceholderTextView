@@ -10,8 +10,8 @@
 
 @interface GCPlaceholderTextView () 
 
-@property (nonatomic, retain) UIColor* realTextColor;
-@property (nonatomic, readonly) NSString* realText;
+@property (nonatomic, strong) UIColor* realTextColor;
+@property (unsafe_unretained, nonatomic, readonly) NSString* realText;
 
 - (void) beginEditing:(NSNotification*) notification;
 - (void) endEditing:(NSNotification*) notification;
@@ -50,8 +50,7 @@
         self.text = aPlaceholder;
     }
     if (aPlaceholder != placeholder) {
-        [placeholder autorelease];
-        placeholder = [aPlaceholder retain];
+        placeholder = aPlaceholder;
     }
     
     
@@ -116,13 +115,8 @@
 #pragma mark Dealloc
 
 - (void)dealloc {
-    [realTextColor release];
-    realTextColor = nil;
-    [placeholder release];
-    placeholder = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [super dealloc];
 }
 
 @end
