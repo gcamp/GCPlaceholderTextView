@@ -27,11 +27,6 @@
     [self.textView setText:@""];
 }
 
-- (void)dealloc
-{
-    [textView release];
-    [super dealloc];
-}
 
 - (void)viewDidUnload
 {
