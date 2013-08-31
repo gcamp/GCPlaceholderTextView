@@ -10,7 +10,6 @@
 
 @interface GCPlaceholderTextView () 
 
-@property (nonatomic, strong) UIColor* realTextColor;
 @property (unsafe_unretained, nonatomic, readonly) NSString* realText;
 
 - (void) beginEditing:(NSNotification*) notification;
