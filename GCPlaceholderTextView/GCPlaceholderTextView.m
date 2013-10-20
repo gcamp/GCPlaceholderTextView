@@ -57,6 +57,14 @@
     [self endEditing:nil];
 }
 
+- (void)setPlaceholderColor:(UIColor *)aPlaceholderColor {
+    placeholderColor = aPlaceholderColor;
+    
+    if ([super.text isEqualToString:self.placeholder]) {
+        self.textColor = self.placeholderColor;
+    }
+}
+
 - (NSString *) text {
     NSString* text = [super text];
     if ([text isEqualToString:self.placeholder]) return @"";
