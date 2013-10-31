@@ -38,7 +38,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beginEditing:) name:UITextViewTextDidBeginEditingNotification object:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endEditing:) name:UITextViewTextDidEndEditingNotification object:self];
     
-    self.realTextColor = [UIColor blackColor];
+    self.realTextColor = self.textColor;
     self.placeholderColor = [UIColor lightGrayColor];
 }
 
