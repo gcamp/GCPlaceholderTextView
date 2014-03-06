@@ -22,6 +22,7 @@
 @synthesize realTextColor;
 @synthesize placeholder;
 @synthesize placeholderColor;
+@synthesize background;
 
 #pragma mark -
 #pragma mark Initialisation
@@ -29,8 +30,16 @@
 - (id) initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         [self awakeFromNib];
+        [self setupBackground:frame];
     }
     return self;
+}
+
+- (void)setupBackground:(CGRect)frame
+{
+  UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame))];
+  background.image = self.background;
+  [self insertSubview:background atIndex:0];
 }
 
 - (void)awakeFromNib {
