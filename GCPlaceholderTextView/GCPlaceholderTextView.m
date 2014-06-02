@@ -37,9 +37,25 @@
 	return self;
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self setup];
+- (id)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer {
+    if((self = [super initWithFrame:frame textContainer:textContainer])) {
+        [self setup];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if((self = [super initWithCoder:aDecoder])) {
+        [self setup];
+    }
+    return self;
+}
+
+- (id)init {
+    if((self = [super init])) {
+        [self setup];
+    }
+    return self;
 }
 
 - (void)setup {
@@ -47,7 +63,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endEditing:) name:UITextViewTextDidEndEditingNotification object:self];
     
 	self.realTextColor    = self.textColor;
-	self.placeholderColor = [UIColor lightGrayColor];
+	self.placeholderColor = ((self.realTextColor == nil)?[UIColor colorWithWhite:0.0 alpha:0.3]:[self.realTextColor colorWithAlphaComponent:0.3]);
 }
 
 #pragma mark
@@ -73,26 +89,20 @@
 }
 
 - (NSString *)text {
-	NSString *text = super.text;
-	if ([text isEqualToString:self.placeholder]) {
+	if ([self.realText isEqualToString:self.placeholder]) {
         return @"";
     };
-	return text;
+	return self.realText;
 }
 
 - (void)setText:(NSString *)text {
 	if (([text isEqualToString:@""] || text == nil) && ![self isFirstResponder]) {
 		super.text = self.placeholder;
+        self.textColor = self.placeholderColor;
 	}
 	else {
 		super.text = text;
-	}
-
-	if ([super.text isEqualToString:self.placeholder] || super.text == nil) {
-		self.textColor = self.placeholderColor;
-	}
-	else {
-		self.textColor = self.realTextColor;
+        self.textColor = self.realTextColor;
 	}
 }
 
@@ -101,7 +111,7 @@
 }
 
 - (void)beginEditing:(NSNotification *)notification {
-	if ([self.realText isEqualToString:self.placeholder]) {
+	if ([self.realText isEqualToString:self.placeholder] && [self.textColor isEqual:self.placeholderColor]) {
 		super.text     = nil;
 		self.textColor = self.realTextColor;
 	}
