@@ -88,7 +88,7 @@
 		super.text = text;
 	}
 
-	if ([text isEqualToString:self.placeholder] || text == nil) {
+	if ([super.text isEqualToString:self.placeholder] || text == nil) {
 		self.textColor = self.placeholderColor;
 	}
 	else {
