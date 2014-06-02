@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE.txt' }
   s.author       = { "Guillaume Campagna" => "http://gcamp.ca/" }
   s.source       = { :git => "git@github.com:gcamp/GCPlaceholderTextView.git", :tag => s.version.to_s }
-  s.platform     = :ios, '6.0'
+  s.platform     = :ios, '5.1.1'
   s.source_files = 'GCPlaceholderTextView/*.{h,m}'
-  s.requires_arc = false
+  s.requires_arc = true
 end
