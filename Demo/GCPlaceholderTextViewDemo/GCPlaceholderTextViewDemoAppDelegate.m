@@ -12,14 +12,13 @@
 
 @implementation GCPlaceholderTextViewDemoAppDelegate
 
-@synthesize window=_window;
-@synthesize viewController=_viewController;
+@synthesize window         = _window;
+@synthesize viewController = _viewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
-    return YES;
+	self.window.rootViewController = self.viewController;
+	[self.window makeKeyAndVisible];
+	return YES;
 }
-
 
 @end

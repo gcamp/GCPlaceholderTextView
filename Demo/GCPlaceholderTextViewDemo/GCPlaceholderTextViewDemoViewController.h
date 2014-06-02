@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GCPlaceholderTextView.h"
 
-@interface GCPlaceholderTextViewDemoViewController : UIViewController 
+@interface GCPlaceholderTextViewDemoViewController : UIViewController
 
 @property (nonatomic, strong) IBOutlet GCPlaceholderTextView *textView;
 

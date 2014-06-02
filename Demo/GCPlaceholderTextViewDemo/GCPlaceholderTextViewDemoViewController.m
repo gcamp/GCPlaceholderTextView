@@ -13,25 +13,23 @@
 @synthesize textView;
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.textView.placeholderColor = [UIColor redColor];
-    self.textView.placeholder = NSLocalizedString(@"This is a placeholder",);
+	[super viewDidLoad];
+
+	self.textView.placeholderColor = [UIColor redColor];
+	self.textView.placeholder      = NSLocalizedString(@"This is a placeholder",);
 }
 
 - (IBAction)finish:(id)sender {
-    [self.textView resignFirstResponder];
+	[self.textView resignFirstResponder];
 }
 
 - (IBAction)refreshText:(id)sender {
-    [self.textView setText:@""];
+	[self.textView setText:@""];
 }
 
-
-- (void)viewDidUnload
-{
-    [self setTextView:nil];
-    [super viewDidUnload];
+- (void)viewDidUnload {
+	[self setTextView:nil];
+	[super viewDidUnload];
 }
 
 @end
