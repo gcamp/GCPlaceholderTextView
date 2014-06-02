@@ -10,12 +10,10 @@
 
 @implementation GCPlaceholderTextViewDemoViewController
 
-@synthesize textView;
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	self.textView.placeholderColor = [UIColor redColor];
+	self.textView.placeholderColor = UIColor.redColor;
 	self.textView.placeholder      = NSLocalizedString(@"This is a placeholder",);
 }
 
@@ -24,12 +22,7 @@
 }
 
 - (IBAction)refreshText:(id)sender {
-	[self.textView setText:@""];
-}
-
-- (void)viewDidUnload {
-	[self setTextView:nil];
-	[super viewDidUnload];
+	self.textView.text = @"";
 }
 
 @end

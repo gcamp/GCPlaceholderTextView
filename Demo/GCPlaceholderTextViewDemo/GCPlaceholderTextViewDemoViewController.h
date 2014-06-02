@@ -11,7 +11,7 @@
 
 @interface GCPlaceholderTextViewDemoViewController : UIViewController
 
-@property (nonatomic, strong) IBOutlet GCPlaceholderTextView *textView;
+@property (nonatomic, weak) IBOutlet GCPlaceholderTextView *textView;
 
 - (IBAction)finish:(id)sender;
 - (IBAction)refreshText:(id)sender;
