@@ -89,16 +89,18 @@
 }
 
 - (NSString *)text {
-	if ([self.realText isEqualToString:self.placeholder]) {
+	if ([self.realText isEqualToString:self.placeholder] && [self.textColor isEqual:self.placeholderColor]) {
 		return @"";
 	}
-	;
 	return self.realText;
 }
 
 - (void)setText:(NSString *)text {
 	if (([text isEqualToString:@""] || text == nil) && ![self isFirstResponder]) {
 		super.text = self.placeholder;
+	}
+	else if ([text isEqualToString:self.placeholder]) {
+		return;
 	}
 	else {
 		super.text = text;
