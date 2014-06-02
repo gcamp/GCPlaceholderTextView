@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		622CC0C9193C91B5001E9172 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 622CC0C8193C91B5001E9172 /* Default-568h@2x.png */; };
 		B0B559FA1361DFFA00A8E980 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B559F91361DFFA00A8E980 /* UIKit.framework */; };
 		B0B559FC1361DFFA00A8E980 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B559FB1361DFFA00A8E980 /* Foundation.framework */; };
 		B0B559FE1361DFFA00A8E980 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B559FD1361DFFA00A8E980 /* CoreGraphics.framework */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		622CC0C8193C91B5001E9172 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		B0B559F51361DFFA00A8E980 /* GCPlaceholderTextViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GCPlaceholderTextViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B559F91361DFFA00A8E980 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B0B559FB1361DFFA00A8E980 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				B0B55A0B1361DFFA00A8E980 /* MainWindow.xib */,
+				622CC0C8193C91B5001E9172 /* Default-568h@2x.png */,
 				B0B55A011361DFFA00A8E980 /* GCPlaceholderTextViewDemo-Info.plist */,
 				B0B55A021361DFFA00A8E980 /* InfoPlist.strings */,
 				B0B55A051361DFFA00A8E980 /* GCPlaceholderTextViewDemo-Prefix.pch */,
@@ -141,7 +144,7 @@
 		B0B559EC1361DFFA00A8E980 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = LittleKiwi;
 			};
 			buildConfigurationList = B0B559EF1361DFFA00A8E980 /* Build configuration list for PBXProject "GCPlaceholderTextViewDemo" */;
@@ -167,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0B55A041361DFFA00A8E980 /* InfoPlist.strings in Resources */,
+				622CC0C9193C91B5001E9172 /* Default-568h@2x.png in Resources */,
 				B0B55A0D1361DFFA00A8E980 /* MainWindow.xib in Resources */,
 				B0B55A131361DFFA00A8E980 /* GCPlaceholderTextViewDemoViewController.xib in Resources */,
 			);
@@ -219,7 +223,6 @@
 		B0B55A141361DFFA00A8E980 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -228,7 +231,8 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -236,13 +240,12 @@
 		B0B55A151361DFFA00A8E980 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};
@@ -259,6 +262,7 @@
 				GCC_PREFIX_HEADER = "GCPlaceholderTextViewDemo/GCPlaceholderTextViewDemo-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "GCPlaceholderTextViewDemo/GCPlaceholderTextViewDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -274,6 +278,7 @@
 				GCC_PREFIX_HEADER = "GCPlaceholderTextViewDemo/GCPlaceholderTextViewDemo-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "GCPlaceholderTextViewDemo/GCPlaceholderTextViewDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

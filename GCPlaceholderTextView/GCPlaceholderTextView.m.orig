@@ -37,25 +37,9 @@
 	return self;
 }
 
-- (id)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer {
-    if((self = [super initWithFrame:frame textContainer:textContainer])) {
-        [self setup];
-    }
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    if((self = [super initWithCoder:aDecoder])) {
-        [self setup];
-    }
-    return self;
-}
-
-- (id)init {
-    if((self = [super init])) {
-        [self setup];
-    }
-    return self;
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self setup];
 }
 
 - (void)setup {
@@ -63,7 +47,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endEditing:) name:UITextViewTextDidEndEditingNotification object:self];
     
 	self.realTextColor    = self.textColor;
-	self.placeholderColor = ((self.realTextColor == nil)?[UIColor colorWithWhite:0.0 alpha:0.3]:[self.realTextColor colorWithAlphaComponent:0.3]);
+	self.placeholderColor = [UIColor lightGrayColor];
 }
 
 #pragma mark
@@ -89,20 +73,30 @@
 }
 
 - (NSString *)text {
-	if ([self.realText isEqualToString:self.placeholder]) {
+	NSString *text = super.text;
+	if ([text isEqualToString:self.placeholder]) {
         return @"";
     };
-	return self.realText;
+	return text;
 }
 
 - (void)setText:(NSString *)text {
 	if (([text isEqualToString:@""] || text == nil) && ![self isFirstResponder]) {
 		super.text = self.placeholder;
-        self.textColor = self.placeholderColor;
 	}
 	else {
 		super.text = text;
-        self.textColor = self.realTextColor;
+	}
+
+<<<<<<< HEAD
+	if ([super.text isEqualToString:self.placeholder] || super.text == nil) {
+=======
+	if ([super.text isEqualToString:self.placeholder] || text == nil) {
+>>>>>>> origin/master
+		self.textColor = self.placeholderColor;
+	}
+	else {
+		self.textColor = self.realTextColor;
 	}
 }
 
@@ -111,7 +105,7 @@
 }
 
 - (void)beginEditing:(NSNotification *)notification {
-	if ([self.realText isEqualToString:self.placeholder] && [self.textColor isEqual:self.placeholderColor]) {
+	if ([self.realText isEqualToString:self.placeholder]) {
 		super.text     = nil;
 		self.textColor = self.realTextColor;
 	}

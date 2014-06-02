@@ -12,7 +12,7 @@
 
 @interface GCPlaceholderTextViewDemoAppDelegate : NSObject <UIApplicationDelegate>
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet GCPlaceholderTextViewDemoViewController *viewController;
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) GCPlaceholderTextViewDemoViewController *viewController;
 
 @end
