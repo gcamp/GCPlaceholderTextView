@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-
-@interface GCPlaceholderTextView : UITextView 
+@interface GCPlaceholderTextView : UITextView
 
 @property(nonatomic, strong) NSString *placeholder;
 

@@ -37,19 +37,17 @@
 	return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-	if ((self = [super initWithCoder:aDecoder])) {
-		[self setup];
-	}
-	return self;
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self setup];
 }
 
 - (void)setup {
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beginEditing:) name:UITextViewTextDidBeginEditingNotification object:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beginEditing:) name:UITextViewTextDidBeginEditingNotification object:self];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endEditing:) name:UITextViewTextDidEndEditingNotification object:self];
-
+    
 	self.realTextColor    = self.textColor;
-	self.placeholderColor = ((self.realTextColor == nil) ? [UIColor colorWithWhite:0.0 alpha:0.3] : [self.realTextColor colorWithAlphaComponent:0.3]);
+	self.placeholderColor = [UIColor lightGrayColor];
 }
 
 #pragma mark
@@ -75,24 +73,26 @@
 }
 
 - (NSString *)text {
-	if ([self.realText isEqualToString:self.placeholder] && [self.textColor isEqual:self.placeholderColor]) {
-		return @"";
-	}
-	return self.realText;
+	NSString *text = super.text;
+	if ([text isEqualToString:self.placeholder]) {
+        return @"";
+    };
+	return text;
 }
 
 - (void)setText:(NSString *)text {
 	if (([text isEqualToString:@""] || text == nil) && ![self isFirstResponder]) {
 		super.text = self.placeholder;
 	}
-	else if ([text isEqualToString:self.placeholder]) {
-		return;
-	}
 	else {
 		super.text = text;
 	}
 
+<<<<<<< HEAD
 	if ([super.text isEqualToString:self.placeholder] || super.text == nil) {
+=======
+	if ([super.text isEqualToString:self.placeholder] || text == nil) {
+>>>>>>> origin/master
 		self.textColor = self.placeholderColor;
 	}
 	else {
@@ -105,7 +105,7 @@
 }
 
 - (void)beginEditing:(NSNotification *)notification {
-	if ([self.realText isEqualToString:self.placeholder] && [self.textColor isEqual:self.placeholderColor]) {
+	if ([self.realText isEqualToString:self.placeholder]) {
 		super.text     = nil;
 		self.textColor = self.realTextColor;
 	}
@@ -129,7 +129,7 @@
 	}
 	else {
 		self.realTextColor = textColor;
-		super.textColor    = textColor;
+		super.textColor = textColor;
 	}
 }
 
