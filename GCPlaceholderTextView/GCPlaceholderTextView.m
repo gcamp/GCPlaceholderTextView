@@ -30,8 +30,8 @@
 	_realTextColor    = nil;
 }
 
-- (id)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer {
-	if ((self = [super initWithFrame:frame textContainer:textContainer])) {
+- (id)initWithFrame:(CGRect)frame {
+	if ((self = [super initWithFrame:frame])) {
 		[self setup];
 	}
 	return self;
