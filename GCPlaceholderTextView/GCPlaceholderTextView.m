@@ -30,13 +30,6 @@
 	_realTextColor    = nil;
 }
 
-- (id)initWithFrame:(CGRect)frame {
-	if ((self = [super initWithFrame:frame])) {
-		[self setup];
-	}
-	return self;
-}
-
 - (id)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer {
 	if ((self = [super initWithFrame:frame textContainer:textContainer])) {
 		[self setup];
@@ -46,13 +39,6 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
 	if ((self = [super initWithCoder:aDecoder])) {
-		[self setup];
-	}
-	return self;
-}
-
-- (id)init {
-	if ((self = [super init])) {
 		[self setup];
 	}
 	return self;
