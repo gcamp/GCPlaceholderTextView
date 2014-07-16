@@ -10,7 +10,9 @@
 
 @interface GCPlaceholderTextView () 
 
-@property (unsafe_unretained, nonatomic, readonly) NSString* realText;
+@property (nonatomic, strong) UIFont* realTextFont;
+@property (nonatomic, strong) NSString* realText;
+
 
 - (void) beginEditing:(NSNotification*) notification;
 - (void) endEditing:(NSNotification*) notification;
@@ -26,6 +28,7 @@
 #pragma mark -
 #pragma mark Initialisation
 
+
 - (id) initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         [self awakeFromNib];
@@ -36,22 +39,28 @@
 - (void)awakeFromNib {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beginEditing:) name:UITextViewTextDidBeginEditingNotification object:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endEditing:) name:UITextViewTextDidEndEditingNotification object:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changedEditing:) name:UITextViewTextDidChangeNotification object:self];
     
     self.realTextColor = self.textColor;
     self.placeholderColor = [UIColor lightGrayColor];
+    self.realTextFont = self.font;
+    self.placeHolderFont = self.realTextFont;
+    
+
 }
 
 #pragma mark -
 #pragma mark Setter/Getters
 
+
 - (void) setPlaceholder:(NSString *)aPlaceholder {
-    if ([self.realText isEqualToString:placeholder] && ![self isFirstResponder]) {
-        self.text = aPlaceholder;
+    if ([_realText length] == 0 && ![self isFirstResponder]) {
+        super.font = self.placeHolderFont;
+        super.text = aPlaceholder;
     }
     if (aPlaceholder != placeholder) {
         placeholder = aPlaceholder;
     }
-    
     
     [self endEditing:nil];
 }
@@ -59,60 +68,71 @@
 - (void)setPlaceholderColor:(UIColor *)aPlaceholderColor {
     placeholderColor = aPlaceholderColor;
     
-    if ([super.text isEqualToString:self.placeholder]) {
-        self.textColor = self.placeholderColor;
+    if ([_realText length] == 0) {
+        super.textColor = self.placeholderColor;
+        super.font = self.placeHolderFont;
     }
 }
 
-- (NSString *) text {
-    NSString* text = [super text];
-    if ([text isEqualToString:self.placeholder]) return @"";
-    return text;
+- (void) setPlaceHolderFont:(UIFont *)placeHolderFont {
+    _placeHolderFont = placeHolderFont;
+    if ([_realText length] == 0) {
+        super.font = self.placeHolderFont;
+    }
+}
+
+-(NSString *) text {
+    return _realText;
 }
 
 - (void) setText:(NSString *)text {
-    if (([text isEqualToString:@""] || text == nil) && ![self isFirstResponder]) {
+    if ([text length] == 0 && ![self isFirstResponder]) {
         super.text = self.placeholder;
-    }
-    else {
+        super.textColor = self.placeholderColor;
+        super.font = self.placeHolderFont;
+    } else {
         super.text = text;
+        super.textColor = self.realTextColor;
+        super.font = self.realTextFont;
     }
-    
-    if ([text isEqualToString:self.placeholder] || text == nil) {
-        self.textColor = self.placeholderColor;
-    }
-    else {
-        self.textColor = self.realTextColor;
-    }
+    _realText = text;
 }
 
-- (NSString *) realText {
-    return [super text];
-}
 
 - (void) beginEditing:(NSNotification*) notification {
-    if ([self.realText isEqualToString:self.placeholder]) {
+    if ([_realText length] == 0) {
         super.text = nil;
-        self.textColor = self.realTextColor;
+        super.textColor = self.realTextColor;
+        super.font = self.realTextFont;
     }
 }
 
 - (void) endEditing:(NSNotification*) notification {
-    if ([self.realText isEqualToString:@""] || self.realText == nil) {
+    if ([_realText length] == 0) {
         super.text = self.placeholder;
-        self.textColor = self.placeholderColor;
+        super.textColor = self.placeholderColor;
+        super.font = self.placeHolderFont;
+    }
+}
+
+- (void) changedEditing:(NSNotification*) notification {
+    _realText = super.text;
+    if ([_realText length] == 0 && ![self isFirstResponder]) {
+        super.text = self.placeholder;
+        super.textColor = self.placeholderColor;
+        super.font = self.placeHolderFont;
+    }
+    
+    // call delegate again
+    if ([self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+        [self.delegate textViewDidChange:self];
     }
 }
 
 - (void) setTextColor:(UIColor *)textColor {
-    if ([self.realText isEqualToString:self.placeholder]) {
-        if ([textColor isEqual:self.placeholderColor]){
-             [super setTextColor:textColor];
-        } else {
-            self.realTextColor = textColor;
-        }
-    }
-    else {
+    if ([_realText length] == 0) {
+        self.realTextColor = textColor;
+    } else {
         self.realTextColor = textColor;
         [super setTextColor:textColor];
     }
