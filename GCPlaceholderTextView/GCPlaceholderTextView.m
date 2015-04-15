@@ -53,7 +53,7 @@
     }
     
     
-    [self endEditing:nil];
+    [self didChange:nil];
 }
 
 - (void)setPlaceholderColor:(UIColor *)aPlaceholderColor {
