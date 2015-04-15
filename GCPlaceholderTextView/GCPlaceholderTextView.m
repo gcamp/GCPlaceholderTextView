@@ -91,16 +91,28 @@
 }
 
 - (void) beginEditing:(NSNotification*) notification {
-    if ([self.realText isEqualToString:self.placeholder]) {
-        super.text = nil;
-        self.textColor = self.realTextColor;
-    }
+    self.selectedRange = NSMakeRange(0, 0);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChange:) name:UITextViewTextDidChangeNotification object:self];
 }
 
 - (void) endEditing:(NSNotification*) notification {
-    if ([self.realText isEqualToString:@""] || self.realText == nil) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:self];
+}
+
+- (void) didChange:(NSNotification*) notification {
+    
+    if (self.realText.length)
+    {
+        if ([[self.realText substringFromIndex:1] isEqualToString:self.placeholder]) {
+            super.text = [self.realText substringToIndex:1];
+            self.textColor = self.realTextColor;
+        }
+    }
+    else
+    {
         super.text = self.placeholder;
         self.textColor = self.placeholderColor;
+        self.selectedRange = NSMakeRange(0, 0);
     }
 }
 
