@@ -103,8 +103,10 @@
     
     if (self.realText.length)
     {
-        if ([[self.realText substringFromIndex:1] isEqualToString:self.placeholder]) {
-            super.text = [self.realText substringToIndex:1];
+        NSRange range = NSMakeRange(self.realText.length - self.placeholder.length, self.placeholder.length);
+        
+        if (self.realText.length > range.location + range.location && [[self.realText substringWithRange:range] isEqualToString:self.placeholder]) {
+            super.text = [self.realText stringByReplacingOccurrencesOfString:self.placeholder withString:@""];
             self.textColor = self.realTextColor;
         }
     }
