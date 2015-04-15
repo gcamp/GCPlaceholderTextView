@@ -53,7 +53,7 @@
     }
     
     
-    [self endEditing:nil];
+    [self didChange:nil];
 }
 
 - (void)setPlaceholderColor:(UIColor *)aPlaceholderColor {
@@ -91,16 +91,30 @@
 }
 
 - (void) beginEditing:(NSNotification*) notification {
-    if ([self.realText isEqualToString:self.placeholder]) {
-        super.text = nil;
-        self.textColor = self.realTextColor;
-    }
+    self.selectedRange = NSMakeRange(0, 0);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChange:) name:UITextViewTextDidChangeNotification object:self];
 }
 
 - (void) endEditing:(NSNotification*) notification {
-    if ([self.realText isEqualToString:@""] || self.realText == nil) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:self];
+}
+
+- (void) didChange:(NSNotification*) notification {
+    
+    if (self.realText.length)
+    {
+        NSRange range = NSMakeRange(self.realText.length - self.placeholder.length, self.placeholder.length);
+        
+        if (self.realText.length > range.location + range.location && [[self.realText substringWithRange:range] isEqualToString:self.placeholder]) {
+            super.text = [self.realText stringByReplacingOccurrencesOfString:self.placeholder withString:@""];
+            self.textColor = self.realTextColor;
+        }
+    }
+    else
+    {
         super.text = self.placeholder;
         self.textColor = self.placeholderColor;
+        self.selectedRange = NSMakeRange(0, 0);
     }
 }
 
